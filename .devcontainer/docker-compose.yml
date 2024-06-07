@@ -1,0 +1,24 @@
+x-environment: &default-environment
+  ENVIRONMENT_ACTIVE: local
+
+services:
+  ubuntu:
+    image: ubuntu
+    tty: true
+    build:
+      context: ..
+      dockerfile: .devcontainer/containers/ubuntu/Dockerfile
+    environment:
+      <<: *default-environment
+    volumes:
+      - ..:/workspace
+      - ~/.npmrc:/home/node/.npmrc:cached
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - $HOME/.aws:/home/ubuntu/.aws:rw
+    user: ubuntu
+    networks:
+      - private-network
+
+networks:
+  private-network:
+    driver: bridge

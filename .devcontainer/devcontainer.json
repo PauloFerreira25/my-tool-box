@@ -1,0 +1,60 @@
+{
+  "name": "my-tool-box",
+  "service": "ubuntu",
+  "dockerComposeFile": "docker-compose.yml",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "ubuntu",
+  "postAttachCommand": "sh .devcontainer/scripts/postAttachCommand.sh",
+  "overrideCommand": true,
+  "runArgs": [
+    "--add-host=host.docker.internal:host-gateway"
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "mhutchie.git-graph",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "editorconfig.editorconfig",
+        "vue.volar",
+        "wayou.vscode-todo-highlight",
+        "ahmadalli.vscode-nginx-conf"
+      ],
+      "unwantedRecommendations": [
+        "octref.vetur",
+        "hookyqr.beautify",
+        "dbaeumer.jshint",
+        "ms-vscode.vscode-typescript-tslint-plugin"
+      ],
+      "settings": {
+        "js/ts.implicitProjectConfig.target": "ES2022",
+        "js/ts.implicitProjectConfig.module": "ES2022",
+        "workbench.colorCustomizations": {
+          "activityBar.background": "#ee8105cb",
+          "activityBar.activeBackground": "#ee8105cb",
+          "activityBar.inactiveForeground": "#ffffff",
+          "statusBar.background": "#ee8105cb",
+          "statusBar.foreground": "#ffffff"
+        },
+        "typescript.tsdk": "./node_modules/typescript/lib",
+        "editor.bracketPairColorization.enabled": true,
+        "editor.guides.bracketPairs": true,
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": [
+          "source.fixAll.eslint"
+        ],
+        "eslint.validate": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "vue"
+        ],
+        "[nginx]": {
+          "editor.defaultFormatter": "ahmadalli.vscode-nginx-conf"
+        },
+      }
+    }
+  }
+}
