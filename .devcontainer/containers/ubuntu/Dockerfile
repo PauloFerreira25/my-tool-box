@@ -25,6 +25,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* 
 
 RUN adduser $DEV_USER sudo \
+    && echo "$DEV_USER ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/$DEV_USER \
+    && chmod 0440 /etc/sudoers.d/$DEV_USER \
     && sudo groupadd --gid $DOCKER_GID docker \
     && adduser $DEV_USER docker 
 
@@ -47,8 +49,6 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
     && rm -rf .aws awscliv2.zip 
 
 RUN pip install cfn-flip --break-system-packages
-    
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER $DEV_USER
 ENV PATH=$PATH:/home/ubuntu/.local/bin

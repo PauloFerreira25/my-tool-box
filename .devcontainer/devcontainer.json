@@ -6,9 +6,6 @@
   "remoteUser": "ubuntu",
   "postAttachCommand": "sh .devcontainer/scripts/postAttachCommand.sh",
   "overrideCommand": true,
-  "runArgs": [
-    "--add-host=host.docker.internal:host-gateway"
-  ],
   "customizations": {
     "vscode": {
       "extensions": [
