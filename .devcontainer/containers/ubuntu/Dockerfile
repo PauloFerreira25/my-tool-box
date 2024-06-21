@@ -3,6 +3,16 @@ FROM ubuntu:24.04
 ARG DEV_USER=ubuntu
 ARG DOCKER_GID=994
 
+# Define o locale desejado
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8  
+
+# Define o fuso horário como UTC
+ENV TZ=UTC
+
+# Configura o fuso horário
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update \
     && apt-get -y install \
