@@ -5,6 +5,7 @@
   "workspaceFolder": "/workspace",
   "remoteUser": "ubuntu",
   "postAttachCommand": "sh .devcontainer/scripts/postAttachCommand.sh",
+  "initializeCommand": "bash ./.devcontainer/hostInitializeCommand.sh",
   "overrideCommand": true,
   "customizations": {
     "vscode": {
@@ -25,6 +26,9 @@
         "ms-vscode.vscode-typescript-tslint-plugin"
       ],
       "settings": {
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
         "js/ts.implicitProjectConfig.target": "ES2022",
         "js/ts.implicitProjectConfig.module": "ES2022",
         "workbench.colorCustomizations": {

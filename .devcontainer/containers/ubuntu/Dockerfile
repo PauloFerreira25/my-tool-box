@@ -4,22 +4,16 @@ ARG DEV_USER=ubuntu
 ARG DOCKER_GID=994
 
 # Define o locale desejado
-ENV LANG en_US.UTF-8  
-ENV LANGUAGE en_US:en  
-ENV LC_ALL en_US.UTF-8  
+ENV LANG en_US.UTF-8
 
 # Define o fuso horário como UTC
 ENV TZ=UTC
-
-# Configura o fuso horário
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get update \
     && apt-get -y install \
     --no-install-recommends --no-install-suggests \
     git-all \
     telnet \
-    iproute2 \
     net-tools \
     iputils-ping \
     openssh-client \
@@ -31,8 +25,22 @@ RUN apt-get update \
     unzip \
     less \
     pip \
+    libssl-dev \
+    locales \
+    # sucessor do netstat
+    iproute2 \ 
+    # RDP
+    remmina \
+    remmina-plugin-rdp \
+    at-spi2-core \
+    dbus-x11 \
+    libcanberra-gtk-module libcanberra-gtk3-module \
+    gnome-icon-theme \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* 
+    && rm -rf /var/lib/apt/lists/* \
+    && locale-gen $LANG \
+    && update-locale LANG=$LANG \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN adduser $DEV_USER sudo \
     && echo "$DEV_USER ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/$DEV_USER \

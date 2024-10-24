@@ -1,5 +1,6 @@
 x-environment: &default-environment
   ENVIRONMENT_ACTIVE: local
+  GTK_MODULES: canberra-gtk-module
 
 services:
   ubuntu:
@@ -10,16 +11,19 @@ services:
       dockerfile: .devcontainer/containers/ubuntu/Dockerfile
     environment:
       <<: *default-environment
+      DISPLAY: ${DISPLAY}
     volumes:
       - ..:/workspace
       - ~/.npmrc:/home/node/.npmrc:cached
       - /var/run/docker.sock:/var/run/docker.sock:rw
       - $HOME/.aws:/home/ubuntu/.aws:rw
       - $HOME/.aws:/workspace/.aws:rw
+      - /tmp/.X11-unix:/tmp/.X11-unix
     user: ubuntu
-    networks:
-      - private-network
-
-networks:
-  private-network:
-    driver: bridge
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    devices:
+      - /dev/ppp
+    network_mode: "host"
