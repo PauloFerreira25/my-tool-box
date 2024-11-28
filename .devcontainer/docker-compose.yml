@@ -18,6 +18,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:rw
       - $HOME/.aws:/home/ubuntu/.aws:rw
       - $HOME/.aws:/workspace/.aws:rw
+      - $HOME/projetos:/workspace/projetos:rw
       - /tmp/.X11-unix:/tmp/.X11-unix
     user: ubuntu
     privileged: true

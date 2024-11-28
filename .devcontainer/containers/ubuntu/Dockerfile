@@ -36,6 +36,7 @@ RUN apt-get update \
     dbus-x11 \
     libcanberra-gtk-module libcanberra-gtk3-module \
     gnome-icon-theme \
+    openjdk-21-jdk \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && locale-gen $LANG \
