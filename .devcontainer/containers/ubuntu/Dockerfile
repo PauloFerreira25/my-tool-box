@@ -27,6 +27,7 @@ RUN apt-get update \
     pip \
     libssl-dev \
     locales \
+    ffmpeg \
     # sucessor do netstat
     iproute2 \ 
     # RDP
@@ -68,6 +69,7 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
     && rm -rf .aws awscliv2.zip 
 
 RUN pip install cfn-flip --break-system-packages
+RUN pip install openai-whisper --break-system-packages
 
 USER $DEV_USER
 ENV PATH=$PATH:/home/ubuntu/.local/bin

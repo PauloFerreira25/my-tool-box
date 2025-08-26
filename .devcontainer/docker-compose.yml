@@ -20,11 +20,15 @@ services:
       - $HOME/.aws:/workspace/.aws:rw
       - $HOME/projetos:/workspace/projetos:rw
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - /dev/dri:/dev/dri
     user: ubuntu
     privileged: true
+    devices:
+      - /dev/ppp
+      - /dev/kvm
+      - /dev/dri/card0
+      - /dev/dri/renderD128
     cap_add:
       - NET_ADMIN
       - SYS_ADMIN
-    devices:
-      - /dev/ppp
     network_mode: "host"
