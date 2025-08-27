@@ -20,6 +20,9 @@ RUN apt-get update \
     ca-certificates \
     curl \
     sudo \
+    wget \
+    sox \ 
+    libsox-fmt-all \
     glibc-source \
     groff \
     unzip \
